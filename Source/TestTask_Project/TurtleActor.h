@@ -4,12 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "TurtleMovementComponent.h"
 #include "TurtleActor.generated.h"
 
 UCLASS()
 class TESTTASK_PROJECT_API ATurtleActor : public AActor
 {
 	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere)
+	USkeletalMeshComponent* VisualMesh;
+
+	UPROPERTY(VisibleAnywhere)
+	UTurtleMovementComponent* Movement;
 	
 public:	
 	// Sets default values for this actor's properties
@@ -22,5 +29,4 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
 };
