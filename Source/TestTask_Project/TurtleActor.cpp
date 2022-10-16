@@ -22,6 +22,8 @@ ATurtleActor::ATurtleActor()
 	
 	Movement = CreateDefaultSubobject<UTurtleMovementComponent>(TEXT("Movement"));
 	Movement->UpdatedComponent = RootComponent;
+	
+	VisualMesh->SetCollisionProfileName(TEXT("Pawn"));
 }
 
 // Called when the game starts or when spawned

@@ -18,7 +18,7 @@ class TESTTASK_PROJECT_API UTurtleMovementComponent : public UMovementComponent
 	FVector DestinationPoint;
 
 	UPROPERTY(EditAnywhere)
-	float MovementSpeed = 1.0f;
+	float MovementSpeed = 100.0f;
 
 public:
     virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
