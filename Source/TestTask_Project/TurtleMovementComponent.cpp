@@ -9,13 +9,15 @@ void UTurtleMovementComponent::TickComponent(float DeltaTime, enum ELevelTick Ti
 
 	FVector MovementVector = DestinationPoint - UpdatedComponent->GetComponentLocation();
 	MovementVector.Normalize();
+	FRotator Rotation = MovementVector.Rotation();
+	Rotation.Yaw -= 45.0f;
 	MovementVector *= DeltaTime * MovementSpeed;
 	MovementVector += FVector(0.f, 0.f, -1.f) * 2.f;
 	
     if (!MovementVector.IsNearlyZero())
     {
         FHitResult Hit;
-        SafeMoveUpdatedComponent(MovementVector, UpdatedComponent->GetComponentRotation(), true, Hit);
+        SafeMoveUpdatedComponent(MovementVector, Rotation, true, Hit);
 
         if (Hit.IsValidBlockingHit())
         {
