@@ -17,15 +17,18 @@ class TESTTASK_PROJECT_API USpawnMenuInterface : public UUserWidget
 
 public:
 	virtual void NativeConstruct() override;
+
+	UPROPERTY(meta = (BindWidget))
+	UButton* Button1;
 	
 	UPROPERTY(meta = (BindWidget))
-	class UButton* Button1;
+	UButton* Button2;
 	
 	UPROPERTY(meta = (BindWidget))
-	class UButton* Button2;
+	UButton* Button3;
 	
-	UPROPERTY(meta = (BindWidget))
-	class UButton* Button3;
+	UPROPERTY(EditAnywhere)
+	UWorld* CurrentWorld;
 	
 	UFUNCTION()
 	void OnClickButton1();

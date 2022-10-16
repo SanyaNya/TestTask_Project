@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#include "TurtleActor.h"
 #include "SpawnMenuInterface.h"
 
 void USpawnMenuInterface::NativeConstruct()
@@ -14,15 +14,27 @@ void USpawnMenuInterface::NativeConstruct()
 
 void USpawnMenuInterface::OnClickButton1()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Green, TEXT("Button1 clicked"));
+	if(CurrentWorld != nullptr)
+	{
+		CurrentWorld->SpawnActor<ATurtleActor>(FVector(-1050.0f, -2080.0f, 460.0f), FRotator(0.0f, 0.0f, 0.0f));
+		GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Green, TEXT("Turtle1 spawned"));
+	}
 }
 
 void USpawnMenuInterface::OnClickButton2()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Green, TEXT("Button2 clicked"));
+	if(CurrentWorld != nullptr)
+	{
+		CurrentWorld->SpawnActor<ATurtleActor>(FVector(-1050.0f, -2080.0f, 460.0f), FRotator(0.0f, 0.0f, 0.0f));
+		GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Green, TEXT("Turtle2 spawned"));
+	}
 }
 
 void USpawnMenuInterface::OnClickButton3()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Green, TEXT("Button3 clicked"));
+	if(CurrentWorld != nullptr)
+	{
+		CurrentWorld->SpawnActor<ATurtleActor>(FVector(-1050.0f, -2080.0f, 460.0f), FRotator(0.0f, 0.0f, 0.0f));
+		GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Green, TEXT("Turtle3 spawned"));
+	}
 }
