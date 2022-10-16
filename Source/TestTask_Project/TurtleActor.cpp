@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+#include "NiagaraFunctionLibrary.h"
+#include "Kismet/GameplayStatics.h"
 #include "TurtleActor.h"
 
 // Sets default values
@@ -30,22 +32,32 @@ ATurtleActor::ATurtleActor()
 	
 	static ConstructorHelpers::FObjectFinder<UAnimationAsset> WalkAnimationAsset(TEXT("/Game/Turtle/turtle_Anim_TurtleArmature_Swim_001.turtle_Anim_TurtleArmature_Swim_001"));
 	if(IdleAnimationAsset.Succeeded()) WalkAnimation = WalkAnimationAsset.Object;
+	
+	static ConstructorHelpers::FObjectFinder<UNiagaraSystem> SpawnParticleSystemAsset(TEXT("/Game/SpawnEffect.SpawnEffect"));
+	if(SpawnParticleSystemAsset.Succeeded()) SpawnParticleSystem = SpawnParticleSystemAsset.Object;
+	
+	static ConstructorHelpers::FObjectFinder<USoundBase> SpawnSoundAsset(TEXT("/Game/WaterSplashCue.WaterSplashCue"));
+	if(SpawnSoundAsset.Succeeded()) SpawnSound = SpawnSoundAsset.Object;
 }
 
 // Called when the game starts or when spawned
 void ATurtleActor::BeginPlay()
 {
 	Super::BeginPlay();
+
+	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), SpawnParticleSystem, GetActorLocation());	
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), SpawnSound, GetActorLocation());
+		
+	VisualMesh->PlayAnimation(WalkAnimation, true);
 	
 	GetWorldTimerManager().SetTimer(CountdownTimerHandle, this, &ATurtleActor::AdvanceTimer, 0.5f, true);
-	
-	VisualMesh->PlayAnimation(WalkAnimation, true);
 }
 
 // Called every frame
 void ATurtleActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
 }
 
 void ATurtleActor::AdvanceTimer()

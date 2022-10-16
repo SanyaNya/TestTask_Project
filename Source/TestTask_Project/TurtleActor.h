@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "TurtleMovementComponent.h"
 #include "Animation/AnimationAsset.h"
+#include "NiagaraSystem.h"
 #include "TurtleActor.generated.h"
 
 UENUM()
@@ -36,6 +37,12 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	UAnimationAsset* WalkAnimation;
+	
+	UPROPERTY(EditAnywhere)
+	UNiagaraSystem* SpawnParticleSystem;
+	
+	UPROPERTY(EditAnywhere)
+	USoundBase* SpawnSound;
 	
 	// Sets default values for this actor's properties
 	ATurtleActor();
