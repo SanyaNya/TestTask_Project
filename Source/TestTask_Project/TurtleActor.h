@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "TurtleMovementComponent.h"
+#include "Animation/AnimationAsset.h"
 #include "TurtleActor.generated.h"
 
 UENUM()
@@ -29,6 +30,12 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	TurtleMovementType MovementType;
+		
+	UPROPERTY(EditAnywhere)
+	UAnimationAsset* IdleAnimation;
+	
+	UPROPERTY(EditAnywhere)
+	UAnimationAsset* WalkAnimation;
 	
 	// Sets default values for this actor's properties
 	ATurtleActor();
