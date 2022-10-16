@@ -9,6 +9,8 @@ AMyCharacter::AMyCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	InteractionComponent = CreateDefaultSubobject<UWidgetInteractionComponent>(TEXT("InteractionComponent"));
+	InteractionComponent->InteractionSource = EWidgetInteractionSource::CenterScreen;
 }
 
 // Called when the game starts or when spawned
@@ -41,6 +43,9 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AMyCharacter::StartJump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &AMyCharacter::StopJump);
+	
+	PlayerInputComponent->BindAction("Click", IE_Pressed, this, &AMyCharacter::StartClick);
+	PlayerInputComponent->BindAction("Click", IE_Released, this, &AMyCharacter::StopClick);
 }
 
 void AMyCharacter::MoveForward(float Value)
@@ -63,4 +68,14 @@ void AMyCharacter::StartJump()
 void AMyCharacter::StopJump()
 {
 	bPressedJump = false;
+}
+
+void AMyCharacter::StartClick()
+{
+	InteractionComponent->PressPointerKey(EKeys::LeftMouseButton);
+}
+
+void AMyCharacter::StopClick()
+{
+	InteractionComponent->ReleasePointerKey(EKeys::LeftMouseButton);
 }

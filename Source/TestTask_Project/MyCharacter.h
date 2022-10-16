@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Components/WidgetInteractionComponent.h"
 #include "MyCharacter.generated.h"
 
 UCLASS()
@@ -12,6 +13,9 @@ class TESTTASK_PROJECT_API AMyCharacter : public ACharacter
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	UWidgetInteractionComponent* InteractionComponent;
+	
 	// Sets default values for this character's properties
 	AMyCharacter();
 
@@ -37,4 +41,10 @@ public:
 	
 	UFUNCTION()
 	void StopJump();
+	
+	UFUNCTION()
+	void StartClick();
+	
+	UFUNCTION()
+	void StopClick();
 };
