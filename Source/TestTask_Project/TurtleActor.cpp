@@ -58,6 +58,12 @@ void ATurtleActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	
+	if((Movement->DestinationPoint - GetActorLocation()).Size() < 25.0f)
+	{
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), SpawnParticleSystem, GetActorLocation());
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), SpawnSound, GetActorLocation());
+		Destroy();
+	}
 }
 
 void ATurtleActor::AdvanceTimer()
