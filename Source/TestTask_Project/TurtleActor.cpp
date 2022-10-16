@@ -37,7 +37,13 @@ ATurtleActor::ATurtleActor()
 	if(SpawnParticleSystemAsset.Succeeded()) SpawnParticleSystem = SpawnParticleSystemAsset.Object;
 	
 	static ConstructorHelpers::FObjectFinder<USoundBase> SpawnSoundAsset(TEXT("/Game/WaterSplashCue.WaterSplashCue"));
-	if(SpawnSoundAsset.Succeeded()) SpawnSound = SpawnSoundAsset.Object;
+	if(SpawnSoundAsset.Succeeded()) 
+	{
+		SpawnSound = SpawnSoundAsset.Object;
+		
+		static ConstructorHelpers::FObjectFinder<USoundAttenuation> AttenuationAsset(TEXT("/Game/SoundAttenuation.SoundAttenuation"));
+		if(AttenuationAsset.Succeeded()) SpawnSound->AttenuationSettings = AttenuationAsset.Object;
+	}
 }
 
 // Called when the game starts or when spawned
