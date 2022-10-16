@@ -15,10 +15,10 @@ class TESTTASK_PROJECT_API ATurtleActor : public AActor
 	UPROPERTY(VisibleAnywhere)
 	USkeletalMeshComponent* VisualMesh;
 
+public:
 	UPROPERTY(VisibleAnywhere)
 	UTurtleMovementComponent* Movement;
 	
-public:	
 	// Sets default values for this actor's properties
 	ATurtleActor();
 

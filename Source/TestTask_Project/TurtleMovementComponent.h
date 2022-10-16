@@ -13,13 +13,13 @@ UCLASS()
 class TESTTASK_PROJECT_API UTurtleMovementComponent : public UMovementComponent
 {
 	GENERATED_BODY()
-	
+
+public:	
 	UPROPERTY(EditAnywhere)
 	FVector DestinationPoint;
 
 	UPROPERTY(EditAnywhere)
-	float MovementSpeed = 100.0f;
+	float MovementSpeed = 200.0f;
 
-public:
     virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 };
