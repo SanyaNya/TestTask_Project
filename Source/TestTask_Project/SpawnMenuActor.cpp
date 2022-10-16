@@ -1,7 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+//#include "Components/Button.h"
 #include "SpawnMenuActor.h"
+
+//void MyOnClick() { GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Red, TEXT("Button1 clicked")); }
 
 // Sets default values
 ASpawnMenuActor::ASpawnMenuActor()
@@ -11,6 +14,9 @@ ASpawnMenuActor::ASpawnMenuActor()
 
 	SpawnMenu = CreateDefaultSubobject<UWidgetComponent>(TEXT("SpawnMenu"));
 	SpawnMenu->SetDrawSize(FVector2D(1800, 900));
+	
+	//UButton* Button1 = static_cast<UButton*>(static_cast<UUserWidget*>(SpawnMenu->GetWidgetClass().GetDefaultObject())->GetWidgetFromName(FName("Button1")));
+	//Button1->OnClicked = MyOnClick;
 }
 
 // Called when the game starts or when spawned
