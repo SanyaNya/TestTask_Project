@@ -30,6 +30,8 @@ ATurtleActor::ATurtleActor()
 void ATurtleActor::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	GetWorldTimerManager().SetTimer(CountdownTimerHandle, this, &ATurtleActor::AdvanceTimer, 0.5f, true);
 }
 
 // Called every frame
@@ -38,3 +40,37 @@ void ATurtleActor::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+void ATurtleActor::AdvanceTimer()
+{
+	Time++;
+	if(MovementType == TurtleMovementType::MoveAndWait)
+	{
+		if(State == 0 && Time >= 2)
+		{
+			State = 1;
+			Movement->MovementSpeed = 0.0f;
+			Time = 0;
+		}
+		else if(State == 1 && Time >= 1)
+		{
+			State = 0;
+			Movement->MovementSpeed = 200.0f;
+			Time = 0;
+		}
+	}
+	else if(MovementType == TurtleMovementType::MoveForwardAndBack)
+	{
+		if(State == 0 && Time >= 2)
+		{
+			State = 1;
+			Movement->MovementSpeed = -Movement->MovementSpeed;
+			Time = 0;
+		}
+		else if(State == 1 && Time >= 1)
+		{
+			State = 0;
+			Movement->MovementSpeed = -Movement->MovementSpeed;
+			Time = 0;
+		}
+	}
+}

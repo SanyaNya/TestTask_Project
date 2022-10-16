@@ -5,10 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/MovementComponent.h"
 #include "TurtleMovementComponent.generated.h"
-
-/**
- * 
- */
+ 
 UCLASS()
 class TESTTASK_PROJECT_API UTurtleMovementComponent : public UMovementComponent
 {

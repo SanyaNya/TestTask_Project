@@ -23,6 +23,7 @@ void USpawnMenuInterface::OnClickButton1()
 		{
 			GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Green, TEXT("Turtle1 spawned"));
 			Turtle->Movement->DestinationPoint = FVector(-11070.0f, -3540.0f, 20.0f);
+			Turtle->MovementType = TurtleMovementType::JustMove;
 		}
 	}
 }
@@ -38,6 +39,7 @@ void USpawnMenuInterface::OnClickButton2()
 		{
 			GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Green, TEXT("Turtle2 spawned"));
 			Turtle->Movement->DestinationPoint = FVector(-11070.0f, -3040.0f, 20.0f);
+			Turtle->MovementType = TurtleMovementType::MoveAndWait;
 		}
 	}
 }
@@ -53,6 +55,7 @@ void USpawnMenuInterface::OnClickButton3()
 		{
 			GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Green, TEXT("Turtle3 spawned"));
 			Turtle->Movement->DestinationPoint = FVector(-11070.0f, -2540.0f, 20.0f);
+			Turtle->MovementType = TurtleMovementType::MoveForwardAndBack;
 		}
 	}
 }

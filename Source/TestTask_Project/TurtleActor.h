@@ -7,6 +7,14 @@
 #include "TurtleMovementComponent.h"
 #include "TurtleActor.generated.h"
 
+UENUM()
+enum class TurtleMovementType
+{
+	JustMove,
+	MoveAndWait,
+	MoveForwardAndBack
+};
+
 UCLASS()
 class TESTTASK_PROJECT_API ATurtleActor : public AActor
 {
@@ -19,12 +27,25 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	UTurtleMovementComponent* Movement;
 	
+	UPROPERTY(EditAnywhere)
+	TurtleMovementType MovementType;
+	
 	// Sets default values for this actor's properties
 	ATurtleActor();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	
+	void AdvanceTimer();
+	
+	void CountdownHasFinished();
+	
+	FTimerHandle CountdownTimerHandle;
+	
+	int Time = 0;
+	
+	int State = 0;
 
 public:	
 	// Called every frame
