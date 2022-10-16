@@ -14,4 +14,5 @@ class TESTTASK_PROJECT_API ATestTask_ProjectGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+	virtual void StartPlay() override;
 };
